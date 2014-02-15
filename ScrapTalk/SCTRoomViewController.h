@@ -11,9 +11,10 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 
 
-@interface SCTRoomViewController : UIViewController
+@interface SCTRoomViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) IBOutlet UIView *footerView;
-@property (weak, nonatomic) IBOutlet UIView *sideView;
+@property (weak, nonatomic) IBOutlet UIView *leftSideView;
 
 @end

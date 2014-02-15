@@ -45,6 +45,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     UILabel *roomLabel = (UILabel *)[cell viewWithTag:1];
+    UIImageView *newImageView = (UIImageView *)[cell viewWithTag:3];
     
     switch (indexPath.row) {
         case 0:
@@ -52,9 +53,10 @@
             break;
         case 1:
             roomLabel.text = @"ほげほげ";
+            newImageView.hidden = YES;
             break;
         case 2:
-            roomLabel.text = @"test";
+            roomLabel.text = @"スペイン旅行中";
             break;
         default:
             break;

@@ -10,6 +10,10 @@
 #import "SCTPhotoItem.h"
 
 @interface SCTPhotoManager : NSObject
-@property (nonatomic, copy, readonly) NSMutableArray *imageList;
+@property (nonatomic, strong) NSDate *lastUploadedAt;
+
++ (SCTPhotoManager *)sharedInstance;
 - (void)requestPhotoList:(void(^)(NSArray *list, NSError *error))completion;
+- (void)uploadPhoto:(NSData *)data completion:(void(^)(NSError *error))completion;
+- (void)getUploadedPhotoList:(void(^)(NSArray *list, NSError *error))completion;
 @end

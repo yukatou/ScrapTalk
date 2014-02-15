@@ -33,6 +33,8 @@
 		9A2E949218AF51680097A0F5 /* SCTPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E949118AF51680097A0F5 /* SCTPhotoManager.m */; };
 		9A2E949418AF599C0097A0F5 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2E949318AF599C0097A0F5 /* AssetsLibrary.framework */; };
 		9A912B8A18AFA6B900F29AE2 /* SCTPhotoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A912B8918AFA6B900F29AE2 /* SCTPhotoItem.m */; };
+		9A912B8D18AFC94800F29AE2 /* NSDate+Addtion.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A912B8C18AFC94800F29AE2 /* NSDate+Addtion.m */; };
+		9A912B9418AFF4F300F29AE2 /* NSData+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A912B9318AFF4F300F29AE2 /* NSData+Resize.m */; };
 		E7AFDB03BE9B49CBB9ADA19C /* libPods-ScrapTalk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AA3E9A649A458590D478FC /* libPods-ScrapTalk.a */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +87,10 @@
 		9A2E949318AF599C0097A0F5 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		9A912B8818AFA6B900F29AE2 /* SCTPhotoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTPhotoItem.h; sourceTree = "<group>"; };
 		9A912B8918AFA6B900F29AE2 /* SCTPhotoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTPhotoItem.m; sourceTree = "<group>"; };
+		9A912B8B18AFC94800F29AE2 /* NSDate+Addtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Addtion.h"; sourceTree = "<group>"; };
+		9A912B8C18AFC94800F29AE2 /* NSDate+Addtion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Addtion.m"; sourceTree = "<group>"; };
+		9A912B9218AFF4F300F29AE2 /* NSData+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Resize.h"; sourceTree = "<group>"; };
+		9A912B9318AFF4F300F29AE2 /* NSData+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Resize.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +157,7 @@
 		9A2E944718AE762B0097A0F5 /* ScrapTalk */ = {
 			isa = PBXGroup;
 			children = (
+				9A912B8E18AFF49D00F29AE2 /* Category */,
 				9A2E945018AE762B0097A0F5 /* SCTAppDelegate.h */,
 				9A2E945118AE762B0097A0F5 /* SCTAppDelegate.m */,
 				9A2E945318AE762B0097A0F5 /* Main_iPhone.storyboard */,
@@ -161,10 +168,6 @@
 				9A2E948218AE7C760097A0F5 /* SCTRoomViewController.m */,
 				9A2E948418AE7C820097A0F5 /* Assets */,
 				9A2E944818AE762B0097A0F5 /* Supporting Files */,
-				9A2E948518AF15860097A0F5 /* UIView+move.h */,
-				9A2E948618AF15860097A0F5 /* UIView+move.m */,
-				9A2E948B18AF41E60097A0F5 /* UIImage+Resize.h */,
-				9A2E948C18AF41E60097A0F5 /* UIImage+Resize.m */,
 				9A2E949018AF51680097A0F5 /* SCTPhotoManager.h */,
 				9A2E949118AF51680097A0F5 /* SCTPhotoManager.m */,
 				9A912B8818AFA6B900F29AE2 /* SCTPhotoItem.h */,
@@ -212,6 +215,21 @@
 				9A2E945C18AE762B0097A0F5 /* Images.xcassets */,
 			);
 			name = Assets;
+			sourceTree = "<group>";
+		};
+		9A912B8E18AFF49D00F29AE2 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				9A2E948518AF15860097A0F5 /* UIView+move.h */,
+				9A2E948618AF15860097A0F5 /* UIView+move.m */,
+				9A2E948B18AF41E60097A0F5 /* UIImage+Resize.h */,
+				9A2E948C18AF41E60097A0F5 /* UIImage+Resize.m */,
+				9A912B8B18AFC94800F29AE2 /* NSDate+Addtion.h */,
+				9A912B8C18AFC94800F29AE2 /* NSDate+Addtion.m */,
+				9A912B9218AFF4F300F29AE2 /* NSData+Resize.h */,
+				9A912B9318AFF4F300F29AE2 /* NSData+Resize.m */,
+			);
+			name = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -355,10 +373,12 @@
 				9A2E948318AE7C760097A0F5 /* SCTRoomViewController.m in Sources */,
 				9A2E944E18AE762B0097A0F5 /* main.m in Sources */,
 				9A2E945B18AE762B0097A0F5 /* SCTViewController.m in Sources */,
+				9A912B8D18AFC94800F29AE2 /* NSDate+Addtion.m in Sources */,
 				9A2E948718AF15860097A0F5 /* UIView+move.m in Sources */,
 				9A912B8A18AFA6B900F29AE2 /* SCTPhotoItem.m in Sources */,
 				9A2E949218AF51680097A0F5 /* SCTPhotoManager.m in Sources */,
 				9A2E945218AE762B0097A0F5 /* SCTAppDelegate.m in Sources */,
+				9A912B9418AFF4F300F29AE2 /* NSData+Resize.m in Sources */,
 				9A2E948D18AF41E60097A0F5 /* UIImage+Resize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
