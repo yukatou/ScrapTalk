@@ -22,6 +22,16 @@
 		9A2E946618AE762B0097A0F5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2E944518AE762B0097A0F5 /* UIKit.framework */; };
 		9A2E946E18AE762B0097A0F5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A2E946C18AE762B0097A0F5 /* InfoPlist.strings */; };
 		9A2E947018AE762B0097A0F5 /* ScrapTalkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E946F18AE762B0097A0F5 /* ScrapTalkTests.m */; };
+		9A2E947A18AE78460097A0F5 /* sample1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A2E947918AE78460097A0F5 /* sample1.jpg */; };
+		9A2E947C18AE78890097A0F5 /* sample2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A2E947B18AE78890097A0F5 /* sample2.jpg */; };
+		9A2E947E18AE789C0097A0F5 /* sample3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A2E947D18AE789C0097A0F5 /* sample3.jpg */; };
+		9A2E948018AE78A30097A0F5 /* sample4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A2E947F18AE78A30097A0F5 /* sample4.jpg */; };
+		9A2E948318AE7C760097A0F5 /* SCTRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E948218AE7C760097A0F5 /* SCTRoomViewController.m */; };
+		9A2E948718AF15860097A0F5 /* UIView+move.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E948618AF15860097A0F5 /* UIView+move.m */; };
+		9A2E948D18AF41E60097A0F5 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E948C18AF41E60097A0F5 /* UIImage+Resize.m */; };
+		9A2E948F18AF51350097A0F5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2E948E18AF51350097A0F5 /* AVFoundation.framework */; };
+		9A2E949218AF51680097A0F5 /* SCTImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E949118AF51680097A0F5 /* SCTImageManager.m */; };
+		9A2E949418AF599C0097A0F5 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2E949318AF599C0097A0F5 /* AssetsLibrary.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +65,20 @@
 		9A2E946B18AE762B0097A0F5 /* ScrapTalkTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ScrapTalkTests-Info.plist"; sourceTree = "<group>"; };
 		9A2E946D18AE762B0097A0F5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9A2E946F18AE762B0097A0F5 /* ScrapTalkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrapTalkTests.m; sourceTree = "<group>"; };
+		9A2E947918AE78460097A0F5 /* sample1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample1.jpg; sourceTree = "<group>"; };
+		9A2E947B18AE78890097A0F5 /* sample2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample2.jpg; sourceTree = "<group>"; };
+		9A2E947D18AE789C0097A0F5 /* sample3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample3.jpg; sourceTree = "<group>"; };
+		9A2E947F18AE78A30097A0F5 /* sample4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample4.jpg; sourceTree = "<group>"; };
+		9A2E948118AE7C760097A0F5 /* SCTRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTRoomViewController.h; sourceTree = "<group>"; };
+		9A2E948218AE7C760097A0F5 /* SCTRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTRoomViewController.m; sourceTree = "<group>"; };
+		9A2E948518AF15860097A0F5 /* UIView+move.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+move.h"; sourceTree = "<group>"; };
+		9A2E948618AF15860097A0F5 /* UIView+move.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+move.m"; sourceTree = "<group>"; };
+		9A2E948B18AF41E60097A0F5 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		9A2E948C18AF41E60097A0F5 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		9A2E948E18AF51350097A0F5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		9A2E949018AF51680097A0F5 /* SCTImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTImageManager.h; sourceTree = "<group>"; };
+		9A2E949118AF51680097A0F5 /* SCTImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTImageManager.m; sourceTree = "<group>"; };
+		9A2E949318AF599C0097A0F5 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +86,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2E949418AF599C0097A0F5 /* AssetsLibrary.framework in Frameworks */,
+				9A2E948F18AF51350097A0F5 /* AVFoundation.framework in Frameworks */,
 				9A2E944418AE762B0097A0F5 /* CoreGraphics.framework in Frameworks */,
 				9A2E944618AE762B0097A0F5 /* UIKit.framework in Frameworks */,
 				9A2E944218AE762B0097A0F5 /* Foundation.framework in Frameworks */,
@@ -103,6 +129,8 @@
 		9A2E944018AE762B0097A0F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A2E949318AF599C0097A0F5 /* AssetsLibrary.framework */,
+				9A2E948E18AF51350097A0F5 /* AVFoundation.framework */,
 				9A2E944118AE762B0097A0F5 /* Foundation.framework */,
 				9A2E944318AE762B0097A0F5 /* CoreGraphics.framework */,
 				9A2E944518AE762B0097A0F5 /* UIKit.framework */,
@@ -120,8 +148,16 @@
 				9A2E945618AE762B0097A0F5 /* Main_iPad.storyboard */,
 				9A2E945918AE762B0097A0F5 /* SCTViewController.h */,
 				9A2E945A18AE762B0097A0F5 /* SCTViewController.m */,
-				9A2E945C18AE762B0097A0F5 /* Images.xcassets */,
+				9A2E948118AE7C760097A0F5 /* SCTRoomViewController.h */,
+				9A2E948218AE7C760097A0F5 /* SCTRoomViewController.m */,
+				9A2E948418AE7C820097A0F5 /* Assets */,
 				9A2E944818AE762B0097A0F5 /* Supporting Files */,
+				9A2E948518AF15860097A0F5 /* UIView+move.h */,
+				9A2E948618AF15860097A0F5 /* UIView+move.m */,
+				9A2E948B18AF41E60097A0F5 /* UIImage+Resize.h */,
+				9A2E948C18AF41E60097A0F5 /* UIImage+Resize.m */,
+				9A2E949018AF51680097A0F5 /* SCTImageManager.h */,
+				9A2E949118AF51680097A0F5 /* SCTImageManager.m */,
 			);
 			path = ScrapTalk;
 			sourceTree = "<group>";
@@ -153,6 +189,18 @@
 				9A2E946C18AE762B0097A0F5 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9A2E948418AE7C820097A0F5 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				9A2E947918AE78460097A0F5 /* sample1.jpg */,
+				9A2E947B18AE78890097A0F5 /* sample2.jpg */,
+				9A2E947D18AE789C0097A0F5 /* sample3.jpg */,
+				9A2E947F18AE78A30097A0F5 /* sample4.jpg */,
+				9A2E945C18AE762B0097A0F5 /* Images.xcassets */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,9 +280,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2E948018AE78A30097A0F5 /* sample4.jpg in Resources */,
 				9A2E945818AE762B0097A0F5 /* Main_iPad.storyboard in Resources */,
 				9A2E945D18AE762B0097A0F5 /* Images.xcassets in Resources */,
+				9A2E947E18AE789C0097A0F5 /* sample3.jpg in Resources */,
+				9A2E947C18AE78890097A0F5 /* sample2.jpg in Resources */,
 				9A2E945518AE762B0097A0F5 /* Main_iPhone.storyboard in Resources */,
+				9A2E947A18AE78460097A0F5 /* sample1.jpg in Resources */,
 				9A2E944C18AE762B0097A0F5 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,9 +306,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2E948318AE7C760097A0F5 /* SCTRoomViewController.m in Sources */,
 				9A2E944E18AE762B0097A0F5 /* main.m in Sources */,
 				9A2E945B18AE762B0097A0F5 /* SCTViewController.m in Sources */,
+				9A2E948718AF15860097A0F5 /* UIView+move.m in Sources */,
+				9A2E949218AF51680097A0F5 /* SCTImageManager.m in Sources */,
 				9A2E945218AE762B0097A0F5 /* SCTAppDelegate.m in Sources */,
+				9A2E948D18AF41E60097A0F5 /* UIImage+Resize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
