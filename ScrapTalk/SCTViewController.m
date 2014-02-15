@@ -44,8 +44,23 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    return cell;
+    UILabel *roomLabel = (UILabel *)[cell viewWithTag:1];
     
+    switch (indexPath.row) {
+        case 0:
+            roomLabel.text = @"しょーごの部屋";
+            break;
+        case 1:
+            roomLabel.text = @"ほげほげ";
+            break;
+        case 2:
+            roomLabel.text = @"test";
+            break;
+        default:
+            break;
+    }
+    
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -105,9 +105,10 @@ static const NSInteger kCameraViewTag = 10;
             }
             
             
-            
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:rect];
             [imageView setImageWithURL:row.photoUrl placeholder:nil];
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
+            imageView.clipsToBounds = YES;
 //            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:row.photoUrl]];
 //            imageView.image = image;
             imageView.userInteractionEnabled = YES;
