@@ -8,6 +8,8 @@
 
 #import "SCTRoomViewController.h"
 #import "UIView+move.h"
+#import "SCTPhotoManager.h"
+#import "JMImageCache.h"
 
 @interface SCTRoomViewController ()
 @property (nonatomic, strong) AVCaptureStillImageOutput *imageOutput;
@@ -27,10 +29,25 @@
     NSMutableArray *_imageViewList;
     UISwipeGestureRecognizer *_newPhotoSwipeGesture;
     UISwipeGestureRecognizer *_cancelSwipeGesture;
-    AVCaptureVideoPreviewLayer *_previewLayer;
+    UISwipeGestureRecognizer *_closeViewSwiprGesture;
+//    AVCaptureVideoPreviewLayer *_previewLayer;
+    AVCaptureVideoPreviewLayer *_captureVideoPreviewLayer;
 }
 
 static const NSInteger kCameraViewTag = 10;
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.tabBarController.tabBar.hidden = YES;
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    self.tabBarController.tabBar.hidden = NO;
+    [super viewWillDisappear:animated];
+}
 
 - (void)viewDidLoad
 {
@@ -49,42 +66,60 @@ static const NSInteger kCameraViewTag = 10;
     _cancelSwipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cancelSwipeGesture:)];
     _cancelSwipeGesture.direction = UISwipeGestureRecognizerDirectionUp;
     
+    _closeViewSwiprGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closeViewSwipeGesture:)];
+    _closeViewSwiprGesture.direction = UISwipeGestureRecognizerDirectionRight;
+    [_sideView addGestureRecognizer:_closeViewSwiprGesture];
+    
     // プレビュー用のビューを生成
     _previewView = [[UIImageView alloc] initWithFrame:CGRectMake(_imageSize.width, 0, _imageSize.width, _imageSize.height)];
     _previewView.userInteractionEnabled = YES;
     _previewView.tag = kCameraViewTag;
     
+    // フッターを非表示
+    _footerView.hidden = YES;
     
-    self.footerView.hidden = YES;
     
-    CGRect rect;
-    for (int i = 0; i < 4; i++) {
+    SCTPhotoManager *photoManager = [[SCTPhotoManager alloc] init];
+    [photoManager requestPhotoList:^(NSArray *list, NSError *error) {
         
-        switch (i) {
-            case 0:
-                rect = CGRectMake(0, 0, _imageSize.width, _imageSize.height);
-                break;
-            case 1:
-                rect = CGRectMake(0, _imageSize.height, _imageSize.width, _imageSize.height);
-                break;
-            case 2:
-                rect = CGRectMake(_imageSize.width, _imageSize.height, _imageSize.width, _imageSize.height);
-                break;
-            case 3:
-                rect = CGRectMake(_imageSize.width, 0, _imageSize.width, _imageSize.height);
-                break;
+        NSInteger i = 0;
+        CGRect rect;
+        
+        for (SCTPhotoItem *row in list) {
+            
+            if (i > 3) break;
+            
+            switch (i) {
+                case 0:
+                    rect = CGRectMake(0, 0, _imageSize.width, _imageSize.height);
+                    break;
+                case 1:
+                    rect = CGRectMake(0, _imageSize.height, _imageSize.width, _imageSize.height);
+                    break;
+                case 2:
+                    rect = CGRectMake(_imageSize.width, _imageSize.height, _imageSize.width, _imageSize.height);
+                    break;
+                case 3:
+                    rect = CGRectMake(_imageSize.width, 0, _imageSize.width, _imageSize.height);
+                    break;
+            }
+            
+            
+            
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:rect];
+            [imageView setImageWithURL:row.photoUrl placeholder:nil];
+//            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:row.photoUrl]];
+//            imageView.image = image;
+            imageView.userInteractionEnabled = YES;
+            [self.mainView addSubview:imageView];
+            [_imageViewList addObject:imageView];
+            
+            i += 1;
         }
-        
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:rect];
-        imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"sample%d.jpg", i + 1]];
-        imageView.userInteractionEnabled = YES;
-        [self.mainView addSubview:imageView];
-        [_imageViewList addObject:imageView];
-    }
-    
-    
-    UIImageView  *imageView = [_imageViewList lastObject];
-    [imageView addGestureRecognizer:_newPhotoSwipeGesture];
+
+        UIImageView  *imageView = [_imageViewList lastObject];
+        [imageView addGestureRecognizer:_newPhotoSwipeGesture];
+    }];
 }
 
 
@@ -108,9 +143,9 @@ static const NSInteger kCameraViewTag = 10;
     
     if (touch.view.tag == kCameraViewTag) {
         if (!_isExpand) {
-            [self expandCameraView:touch.view];
+            [self expandPreviewView];
         } else {
-            [self contractCameraView:touch.view];
+            [self contractPreviewView];
         }
     } else if ([touch.view isKindOfClass:[UIImageView class]]) {
         if (!_isExpand) {
@@ -121,11 +156,11 @@ static const NSInteger kCameraViewTag = 10;
     }
 }
 
-- (void)expandCameraView:(UIView *)imageView
+- (void)expandPreviewView
 {
-    CGRect tmpFrame = imageView.frame;
-    _previewLayer.frame = [[UIScreen mainScreen] bounds];
-    imageView.frame = [[UIScreen mainScreen] bounds];
+    CGRect tmpFrame = _previewView.frame;
+    _captureVideoPreviewLayer.frame = [[UIScreen mainScreen] bounds];
+    _previewView.layer.frame = [[UIScreen mainScreen] bounds];
     _isExpand = YES;
     _preExpandFrame = tmpFrame;
 }
@@ -135,23 +170,19 @@ static const NSInteger kCameraViewTag = 10;
     CGRect tmpFrame = imageView.frame;
     
     [UIView animateWithDuration:0.3f animations:^{
-        
         imageView.frame = [[UIScreen mainScreen] bounds];
-        
     } completion:^(BOOL finished) {
-        
         if (finished) {
             _isExpand = YES;
             _preExpandFrame = tmpFrame;
         }
-        
     }];
 }
 
-- (void)contractCameraView:(UIView *)imageView
+- (void)contractPreviewView
 {
-    imageView.frame = _preExpandFrame;
-    _previewLayer.frame = imageView.bounds;
+    _captureVideoPreviewLayer.frame = _preExpandFrame;
+    _previewView.layer.frame = _preExpandFrame;
     _isExpand = NO;
 }
 
@@ -188,12 +219,13 @@ static const NSInteger kCameraViewTag = 10;
             }
             [imageView moveTo:CGPointMake(point.x, point.y)];
         }
+        
     } completion:^(BOOL finished) {
         // プレビュー追加
-        [self.mainView addSubview:_previewView];
+        [_mainView addSubview:_previewView];
         
         // シャッターボタンを一番前に
-        self.footerView.hidden = NO;
+        _footerView.hidden = NO;
         
         // 追加スワイプの削除
         [[_imageViewList lastObject] removeGestureRecognizer:_newPhotoSwipeGesture];
@@ -210,6 +242,9 @@ static const NSInteger kCameraViewTag = 10;
     // カメラをしまう
     [_previewView removeFromSuperview];
     _footerView.hidden = YES;
+    
+    // キャンセルジェスチャーの削除
+    [[_imageViewList lastObject] removeGestureRecognizer:_cancelSwipeGesture];
     
     for (UIImageView *imageView in _imageViewList) {
         
@@ -229,6 +264,13 @@ static const NSInteger kCameraViewTag = 10;
             [[_imageViewList lastObject] addGestureRecognizer:_newPhotoSwipeGesture];
         }];
     }
+}
+
+
+- (void) closeViewSwipeGesture:(UIGestureRecognizer *)gesture
+{
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)addPhotoWithImage:(UIImage *)image
@@ -264,19 +306,19 @@ static const NSInteger kCameraViewTag = 10;
     [self.session addOutput:self.stillImageOutput];
     
     // キャプチャーセッションから入力のプレビュー表示を作成
-    AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.session];
-    captureVideoPreviewLayer.frame = _previewView.bounds;
-    captureVideoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    _captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.session];
+    _captureVideoPreviewLayer.frame = _previewView.bounds;
+    _captureVideoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     
     // レイヤーをViewに設定
-    CALayer *previewLayer = self.previewView.layer;
-    previewLayer.masksToBounds = YES;
-    [previewLayer addSublayer:captureVideoPreviewLayer];
+    _previewView.layer.masksToBounds = YES;
+    [_previewView.layer addSublayer:_captureVideoPreviewLayer];
     
     // セッション開始
-    [self.session startRunning];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self.session startRunning];
+    });
 }
-
 
 - (IBAction)pressShutterButton
 {
@@ -307,6 +349,9 @@ static const NSInteger kCameraViewTag = 10;
          // カメラをしまう
          [_previewView removeFromSuperview];
          _footerView.hidden = YES;
+         
+         // キャンセルジェスチャーを削除
+         [[_imageViewList lastObject] removeGestureRecognizer:_cancelSwipeGesture];
             
          // 撮った写真を表示
          [self addPhotoWithImage:image];

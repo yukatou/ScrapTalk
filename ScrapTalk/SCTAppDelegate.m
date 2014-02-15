@@ -13,6 +13,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [[UITabBar appearance] setTintColor:UIColorHex(0xFDAB3C)];
+    [[UITabBar appearance] setBarTintColor:UIColorHex(0xFFFFAC)];
+    [[UITabBar appearance] setBackgroundColor:UIColorHex(0xFFFFAC)];
+    [[UITabBar appearance] setBackgroundImage:[[UIImage alloc] init]];
+    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
+    
+    UITabBarController *tabBar = (UITabBarController *)self.window.rootViewController;
+    tabBar.selectedIndex = 1;
     return YES;
 }
 							

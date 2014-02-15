@@ -30,8 +30,10 @@
 		9A2E948718AF15860097A0F5 /* UIView+move.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E948618AF15860097A0F5 /* UIView+move.m */; };
 		9A2E948D18AF41E60097A0F5 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E948C18AF41E60097A0F5 /* UIImage+Resize.m */; };
 		9A2E948F18AF51350097A0F5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2E948E18AF51350097A0F5 /* AVFoundation.framework */; };
-		9A2E949218AF51680097A0F5 /* SCTImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E949118AF51680097A0F5 /* SCTImageManager.m */; };
+		9A2E949218AF51680097A0F5 /* SCTPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E949118AF51680097A0F5 /* SCTPhotoManager.m */; };
 		9A2E949418AF599C0097A0F5 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2E949318AF599C0097A0F5 /* AssetsLibrary.framework */; };
+		9A912B8A18AFA6B900F29AE2 /* SCTPhotoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A912B8918AFA6B900F29AE2 /* SCTPhotoItem.m */; };
+		E7AFDB03BE9B49CBB9ADA19C /* libPods-ScrapTalk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AA3E9A649A458590D478FC /* libPods-ScrapTalk.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5AC4DF36DAA44B41AA18D3E2 /* Pods-ScrapTalk.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScrapTalk.xcconfig"; path = "Pods/Pods-ScrapTalk.xcconfig"; sourceTree = "<group>"; };
+		68AA3E9A649A458590D478FC /* libPods-ScrapTalk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScrapTalk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A2E943E18AE762B0097A0F5 /* ScrapTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrapTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A2E944118AE762B0097A0F5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9A2E944318AE762B0097A0F5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -76,9 +80,11 @@
 		9A2E948B18AF41E60097A0F5 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		9A2E948C18AF41E60097A0F5 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		9A2E948E18AF51350097A0F5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		9A2E949018AF51680097A0F5 /* SCTImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTImageManager.h; sourceTree = "<group>"; };
-		9A2E949118AF51680097A0F5 /* SCTImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTImageManager.m; sourceTree = "<group>"; };
+		9A2E949018AF51680097A0F5 /* SCTPhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTPhotoManager.h; sourceTree = "<group>"; };
+		9A2E949118AF51680097A0F5 /* SCTPhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTPhotoManager.m; sourceTree = "<group>"; };
 		9A2E949318AF599C0097A0F5 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		9A912B8818AFA6B900F29AE2 /* SCTPhotoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTPhotoItem.h; sourceTree = "<group>"; };
+		9A912B8918AFA6B900F29AE2 /* SCTPhotoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTPhotoItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +97,7 @@
 				9A2E944418AE762B0097A0F5 /* CoreGraphics.framework in Frameworks */,
 				9A2E944618AE762B0097A0F5 /* UIKit.framework in Frameworks */,
 				9A2E944218AE762B0097A0F5 /* Foundation.framework in Frameworks */,
+				E7AFDB03BE9B49CBB9ADA19C /* libPods-ScrapTalk.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +121,7 @@
 				9A2E946918AE762B0097A0F5 /* ScrapTalkTests */,
 				9A2E944018AE762B0097A0F5 /* Frameworks */,
 				9A2E943F18AE762B0097A0F5 /* Products */,
+				5AC4DF36DAA44B41AA18D3E2 /* Pods-ScrapTalk.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,6 +143,7 @@
 				9A2E944318AE762B0097A0F5 /* CoreGraphics.framework */,
 				9A2E944518AE762B0097A0F5 /* UIKit.framework */,
 				9A2E946318AE762B0097A0F5 /* XCTest.framework */,
+				68AA3E9A649A458590D478FC /* libPods-ScrapTalk.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -156,8 +165,10 @@
 				9A2E948618AF15860097A0F5 /* UIView+move.m */,
 				9A2E948B18AF41E60097A0F5 /* UIImage+Resize.h */,
 				9A2E948C18AF41E60097A0F5 /* UIImage+Resize.m */,
-				9A2E949018AF51680097A0F5 /* SCTImageManager.h */,
-				9A2E949118AF51680097A0F5 /* SCTImageManager.m */,
+				9A2E949018AF51680097A0F5 /* SCTPhotoManager.h */,
+				9A2E949118AF51680097A0F5 /* SCTPhotoManager.m */,
+				9A912B8818AFA6B900F29AE2 /* SCTPhotoItem.h */,
+				9A912B8918AFA6B900F29AE2 /* SCTPhotoItem.m */,
 			);
 			path = ScrapTalk;
 			sourceTree = "<group>";
@@ -210,9 +221,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9A2E947318AE762B0097A0F5 /* Build configuration list for PBXNativeTarget "ScrapTalk" */;
 			buildPhases = (
+				FB5FC7F2A4AB4A9C929B2728 /* Check Pods Manifest.lock */,
 				9A2E943A18AE762B0097A0F5 /* Sources */,
 				9A2E943B18AE762B0097A0F5 /* Frameworks */,
 				9A2E943C18AE762B0097A0F5 /* Resources */,
+				BD38622FABD343EB9177380E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -301,6 +314,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		BD38622FABD343EB9177380E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-ScrapTalk-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB5FC7F2A4AB4A9C929B2728 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9A2E943A18AE762B0097A0F5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -310,7 +356,8 @@
 				9A2E944E18AE762B0097A0F5 /* main.m in Sources */,
 				9A2E945B18AE762B0097A0F5 /* SCTViewController.m in Sources */,
 				9A2E948718AF15860097A0F5 /* UIView+move.m in Sources */,
-				9A2E949218AF51680097A0F5 /* SCTImageManager.m in Sources */,
+				9A912B8A18AFA6B900F29AE2 /* SCTPhotoItem.m in Sources */,
+				9A2E949218AF51680097A0F5 /* SCTPhotoManager.m in Sources */,
 				9A2E945218AE762B0097A0F5 /* SCTAppDelegate.m in Sources */,
 				9A2E948D18AF41E60097A0F5 /* UIImage+Resize.m in Sources */,
 			);
@@ -446,6 +493,7 @@
 		};
 		9A2E947418AE762B0097A0F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5AC4DF36DAA44B41AA18D3E2 /* Pods-ScrapTalk.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -459,6 +507,7 @@
 		};
 		9A2E947518AE762B0097A0F5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5AC4DF36DAA44B41AA18D3E2 /* Pods-ScrapTalk.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -531,6 +580,7 @@
 				9A2E947518AE762B0097A0F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9A2E947618AE762B0097A0F5 /* Build configuration list for PBXNativeTarget "ScrapTalkTests" */ = {
 			isa = XCConfigurationList;
@@ -539,6 +589,7 @@
 				9A2E947818AE762B0097A0F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

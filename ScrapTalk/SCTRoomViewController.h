@@ -14,5 +14,6 @@
 @interface SCTRoomViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) IBOutlet UIView *footerView;
+@property (weak, nonatomic) IBOutlet UIView *sideView;
 
 @end

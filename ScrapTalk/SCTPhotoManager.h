@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SCTPhotoItem.h"
 
-@interface SCTImageManager : NSObject
+@interface SCTPhotoManager : NSObject
 @property (nonatomic, copy, readonly) NSMutableArray *imageList;
+- (void)requestPhotoList:(void(^)(NSArray *list, NSError *error))completion;
 @end
