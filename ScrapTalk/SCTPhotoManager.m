@@ -135,7 +135,7 @@ static NSString *const kPhotoAPIURL = @"http://v157-7-202-155.z1d4.static.cnode.
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
      {
          
-         int status = ((NSHTTPURLResponse *)response).statusCode;
+         NSInteger status = ((NSHTTPURLResponse *)response).statusCode;
          NSLog(@"get status = %d", status);
          NSLog(@"get data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
          

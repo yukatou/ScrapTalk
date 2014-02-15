@@ -24,6 +24,7 @@
 
 @implementation SCTRoomViewController
 {
+    BOOL _isStop;
     BOOL _isInitialLoaded;
     BOOL _isExpand;
     CGRect _preExpandFrame;
@@ -35,13 +36,12 @@
     UISwipeGestureRecognizer *_closeViewSwiprGesture;
     UISwipeGestureRecognizer *_showPickerViewSwiprGesture;
     AVCaptureVideoPreviewLayer *_captureVideoPreviewLayer;
-    NSTimer *_checkTimer;
     NSTimer *_pushTimer;
 }
 
 static const NSInteger kCameraViewTag = 10;
-static const CGFloat kCheckTimerSec = 1.5f;
-static const CGFloat kPushTimerSec = 3.0f;
+static const NSInteger kCheckTimerSec = 2;
+static const CGFloat kPushTimerSec = 1.5f;
 
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -59,7 +59,6 @@ static const CGFloat kPushTimerSec = 3.0f;
     }
     
     if (_isInitialLoaded) {
-        [self setCheckTimer];
         [self setPushTimer];
     }
     
@@ -74,7 +73,6 @@ static const CGFloat kPushTimerSec = 3.0f;
         [_session stopRunning];
     }
     
-    [self stopCheckTimer];
     [self stopPushTimer];
     
     self.tabBarController.tabBar.hidden = NO;
@@ -85,24 +83,6 @@ static const CGFloat kPushTimerSec = 3.0f;
 {
     [super didReceiveMemoryWarning];
 }
-
-
-- (void) setCheckTimer
-{
-    _checkTimer = [NSTimer scheduledTimerWithTimeInterval:kCheckTimerSec
-                                                   target:self
-                                                 selector:@selector(checkUpdate)
-                                                 userInfo:nil
-                                                  repeats:YES];
-}
-
-- (void) stopCheckTimer
-{
-    if (_checkTimer && [_checkTimer isValid]) {
-        [_checkTimer invalidate];
-    }
-}
-
 
 - (void) setPushTimer
 {
@@ -133,6 +113,7 @@ static const CGFloat kPushTimerSec = 3.0f;
     
     _isExpand = NO;
     _isInitialLoaded = NO;
+    _isStop = NO;
     _imageViewList = [[NSMutableArray alloc] init];
     _imageSize = CGSizeMake(screenWidth / 2.0f, screenHeight / 2.0f);
     
@@ -165,7 +146,6 @@ static const CGFloat kPushTimerSec = 3.0f;
     
     // カメラのセットアップ
     [self setupAVCapture];
-    
     
 }
 
@@ -228,10 +208,11 @@ static const CGFloat kPushTimerSec = 3.0f;
         [imageView addGestureRecognizer:_newPhotoSwipeGesture];
         
         // タイマー設定
-        [self setCheckTimer];
         [self setPushTimer];
-        
         _isInitialLoaded = YES;
+        
+        
+        [self checkUpdate];
     }];
 }
 
@@ -377,6 +358,7 @@ static const CGFloat kPushTimerSec = 3.0f;
 
 - (void) closeViewSwipeGesture:(UIGestureRecognizer *)gesture
 {
+    _isStop = YES;
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -508,9 +490,9 @@ static const CGFloat kPushTimerSec = 3.0f;
     }
     
     // ビデオ入力から画像を非同期で取得。ブロックで定義されている処理が呼び出され、画像データを引数から取得する
-    [self.stillImageOutput
-     captureStillImageAsynchronouslyFromConnection:videoConnection
-     completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
+    [self.stillImageOutput captureStillImageAsynchronouslyFromConnection:videoConnection
+                                                       completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error)
+    {
          if (imageDataSampleBuffer == NULL) {
              return;
          }
@@ -549,14 +531,23 @@ static const CGFloat kPushTimerSec = 3.0f;
 
 - (void)checkUpdate
 {
-    [[SCTPhotoManager sharedInstance] getUploadedPhotoList:^(NSArray *list, NSError *error) {
-        NSLog(@"update count = %lu", (unsigned long)list.count);
-        if (error || list.count == 0) return;
-        
-        for (SCTPhotoItem *item in [list reverseObjectEnumerator]) {
-            [_queuePhotoList addObject:item];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        while (1) {
+            [[SCTPhotoManager sharedInstance] getUploadedPhotoList:^(NSArray *list, NSError *error) {
+                NSLog(@"update count = %lu", (unsigned long)list.count);
+                if (error || list.count == 0) return;
+                
+                for (SCTPhotoItem *item in [list reverseObjectEnumerator]) {
+                    [_queuePhotoList addObject:item];
+                }
+            }];
+            sleep(kCheckTimerSec);
+            
+            if (_isStop) {
+                break;
+            }
         }
-    }];
+    });
 }
 
 - (void)pushImageView
@@ -614,36 +605,34 @@ static const CGFloat kPushTimerSec = 3.0f;
     NSLog(@"%@", info.debugDescription);
     UIImage *image = (UIImage *)[info objectForKey:UIImagePickerControllerOriginalImage];
    
-    [picker dismissViewControllerAnimated:YES completion:^{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+
+    [SVProgressHUD showWithStatus:@"Uploading..."];
+    [[SCTPhotoManager sharedInstance] uploadPhoto:UIImageJPEGRepresentation(image, 1.0f) completion:^(NSError *error) {
+        [SVProgressHUD dismiss];
         
-        [SVProgressHUD showWithStatus:@"Uploading..."];
-        [[SCTPhotoManager sharedInstance] uploadPhoto:UIImageJPEGRepresentation(image, 1.0) completion:^(NSError *error) {
+        if (error) {
+            [[[UIAlertView alloc] initWithTitle:@"エラー"
+                                        message:@"アップロードに失敗しました"
+                                       delegate:nil
+                              cancelButtonTitle:nil
+                              otherButtonTitles:@"了解", nil] show];   
             
-            [SVProgressHUD dismiss];
-            
-            if (error) {
-                [[[UIAlertView alloc] initWithTitle:@"エラー"
-                                            message:@"アップロードに失敗しました"
-                                           delegate:nil
-                                  cancelButtonTitle:nil
-                                  otherButtonTitles:@"了解", nil] show];   
-                
-                return;
-            }
-            
-            // カメラをしまう
-            [_previewView removeFromSuperview];
-            _footerView.hidden = YES;
-            
-            // キャンセルジェスチャーを削除
-            [[_imageViewList lastObject] removeGestureRecognizer:_cancelSwipeGesture];
-            
-            // 撮った写真を表示
-            [self addPhotoWithImage:image];
-            
-            // タイマー設定
-            [self setPushTimer];
-        }];
+            return;
+        }
+        
+        // カメラをしまう
+        [_previewView removeFromSuperview];
+        _footerView.hidden = YES;
+        
+        // キャンセルジェスチャーを削除
+        [[_imageViewList lastObject] removeGestureRecognizer:_cancelSwipeGesture];
+        
+        // 撮った写真を表示
+        [self addPhotoWithImage:image];
+        
+        // タイマー設定
+        [self setPushTimer];
     }];
 }
 
